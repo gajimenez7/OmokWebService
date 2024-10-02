@@ -5,14 +5,6 @@ include "MoveStrategy.php";
 
 class RandomStrategy extends MoveStrategy
 {
-    // function printCurrentBoard($board){
-    //     foreach($board as $key){
-    //         echo $key . " ";
-    //     }
-    // }
-
-    // place
-
     function pickPlace()
     {
         $tempBoard = new Board();

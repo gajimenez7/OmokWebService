@@ -1,23 +1,39 @@
 <?php
 
-define("SIZE", 15);
 class Board
 {
-    public $board;
-    public function __construct(Board $board){
-        $this->board = $board;
-        $this->size = SIZE;
+  // define size of the board as constant
+  const SIZE = 15;
 
+  private array $board;
+
+  public function __construct(){
+    // new blank board filled with zero, for valid placing anywhere
+    $this->board = array_fill(0, self::SIZE, array_fill(0,self::SIZE,0));
+  }
+
+  function validPlace(){
+    //array(rand(0, 15), rand(0, 15))
+    // array_fill(rand(0, 15), 15, [rand(0,15), rand(0,15)]);
+    $validArr = $this->validateBoard($this->board);
+    print_r($validArr);
+    return $validArr;
+  }
+
+  function validateBoard($arr){
+    $availableSpace = [];
+    for($i = 0; $i < self::SIZE; $i++){
+      for($j = 0; $j < self::SIZE; $j++){
+        if($arr[$i][$j] == 0){
+          $availableSpace[] = [$i,$j];
+        }
+      }
     }
-    
-    function validPlace()
-    {
-        //array(rand(0, 15), rand(0, 15))
-        return array_fill(rand(0, 15), 15, [rand(0,15), rand(0,15)]);
-    }
+
+    return $availableSpace;
+  }
 }
 
-// define("SIZE", 15);
 
 // $playBoard = array_fill(0, SIZE, array_fill(0, SIZE, 0));
 

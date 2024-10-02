@@ -13,10 +13,8 @@ class Board
   }
 
   function validPlace(){
-    //array(rand(0, 15), rand(0, 15))
-    // array_fill(rand(0, 15), 15, [rand(0,15), rand(0,15)]);
+    //declare valid array to return based on play board
     $validArr = $this->validateBoard($this->board);
-    print_r($validArr);
     return $validArr;
   }
 
@@ -33,41 +31,3 @@ class Board
     return $availableSpace;
   }
 }
-
-
-// $playBoard = array_fill(0, SIZE, array_fill(0, SIZE, 0));
-
-// function printBoard($arr)
-// {
-//     foreach ($arr as $key) {
-//         foreach ($key as $key2) {
-//             echo $key2 . " ";
-//         }
-//         echo "\n";
-//     }
-// }
-
-// function validateBoard()
-// {
-//     global $playBoard;
-
-//     foreach ($playBoard as $key) {
-//         foreach ($key as $key2) {
-//             if ($key2 == 0) {
-//                 $validBoard[(int)$key] = $key2;
-//             }
-//         }
-//     }
-
-//     print_r($validBoard);
-
-//     return $validBoard;
-// }
-
-// //printBoard($playBoard);
-
-// function getValidBoard()
-// {
-//     $aBoard = validateBoard();
-//     return $aBoard;
-// }

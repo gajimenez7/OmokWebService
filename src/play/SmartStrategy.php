@@ -3,40 +3,42 @@
 include "Board.php";
 include "MoveStrategy.php";
 
+$compStart = True;
+
 class SmartStrategy extends MoveStrategy{
 
-  private bool $compStart;
-  
-  function __construct(){
-    $this->compStart = true;
+  function computerStart(){
+    global $compStart;
+
+
+    if($compStart){
+      $compStart = False;
+
+      $selectX = 7;
+      $selectY = 7;
+    }
   }
-  function pickPlace(){
+
+  function pickPlace() {
     // place must be picked based off of two criteria:
     // - there is a valid place
     // - the player has 3 stones in a row (-,|,\,/)
 
     // comp starts (7,7) -> middle of board
-    if(self::$compStart){
-      $compStart = false;
-      $selectX = 7;
-      $selectY = 7;
-      echo "Picking Place: (" . $selectX . ", " . $selectY . ")";
+    $this->computerStart();
+    // check potential player win
+    // if there is a potential player win:
+    //  - cover one side of 3 row
+    // else, we add stone to:
+    //  - rather new open area
+    //  - or new open area next to an existing stone
+    if($this->threeRow()){
+      // cover open side
     }
     else{
-      // check potential player win
-      // if there is a potential player win:
-      //  - cover one side of 3 row
-      // else, we add stone to:
-      //  - rather new open area
-      //  - or new open area next to an existing stone
-      if($this->threeRow()){
-        // cover open side
-      }
-      else{
-        // from stored computer placements
-        //  - select random coordinate and place near to create
-        //  a computer win
-      }
+      // from stored computer placements
+      //  - select random coordinate and place near to create
+      //  a computer win
     }
   }
 

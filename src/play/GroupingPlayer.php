@@ -26,6 +26,13 @@ class GroupingPlayer{
     $this->grouping[]= $group;
   }
 
+  function getGroupSize(){
+    return $this->groupSize;
+  }
+
+  function getGrouping(){
+    return $this->grouping;
+  }
   function printGrouping(){
     $arr = $this->grouping;
 
@@ -43,7 +50,7 @@ class GroupingPlayer{
 }
 
 //test code
-
+/*
 $test = new GroupingPlayer;
 
 $group1 = [rand(0,15), rand(0,15)];
@@ -63,3 +70,4 @@ echo "GROUP 2 ADDED \n";
 echo "\n";
 
 $test->printGrouping();
+ */

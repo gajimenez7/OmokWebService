@@ -79,3 +79,4 @@ echo json_encode($response);
 
 // some of these things I got from the professor
 // I would say that this is a very rough implementation of encoding so I dont know how it would actually work
+// I sometimes questioned why I chose this career

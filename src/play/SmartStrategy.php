@@ -22,7 +22,7 @@ class SmartStrategy extends MoveStrategy{
   function pickPlace() {
     // place must be picked based off of two criteria:
     // - there is a valid place
-    // - the player has 3 stones in a row (-,|,\,/)
+    // - the player has 3 stones in a row (-,|,\,/) (PRIORITY)
 
     // comp starts (7,7) -> middle of board
     $this->computerStart();
@@ -33,6 +33,7 @@ class SmartStrategy extends MoveStrategy{
     //  - rather new open area
     //  - or new open area next to an existing stone
     if($this->threeRow()){
+      // from Player class, check 
       // cover open side
     }
     else{

@@ -23,16 +23,22 @@ class GroupingPlayer{
 
   function addGroup($group){
     $this->groupSize++;
-
-    $this->grouping[$this->groupSize]= $group;
+    $this->grouping[]= $group;
   }
 
+  function getGroupSize(){
+    return $this->groupSize;
+  }
+
+  function getGrouping(){
+    return $this->grouping;
+  }
   function printGrouping(){
     $arr = $this->grouping;
 
     foreach($arr as $val){
-      echo "Group size: " . array_key_first($arr) ."\n";
-      
+      echo "Group size: " . $this->groupSize . "\n";
+
       echo "Coords: ";
       foreach($val as $coords){
         echo $coords . " ";
@@ -44,17 +50,24 @@ class GroupingPlayer{
 }
 
 //test code
-
+/*
 $test = new GroupingPlayer;
 
 $group1 = [rand(0,15), rand(0,15)];
 $test->addGroup($group1);
 
 echo "GROUP 1 ADDED \n";
+echo "\n";
+
 $test->printGrouping();
+
+echo "\n";
 
 $group2 = [rand(0,15), rand(0,15)];
 $test->addGroup($group2);
 
 echo "GROUP 2 ADDED \n";
+echo "\n";
+
 $test->printGrouping();
+ */

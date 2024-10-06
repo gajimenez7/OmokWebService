@@ -106,6 +106,7 @@ $testPlayer->insert($testGrouping2->getGrouping(), $testGrouping2->getGroupSize(
 //
 //
 //
+
 echo "Group 1: ";
 print_r($group1);
 echo "\n";

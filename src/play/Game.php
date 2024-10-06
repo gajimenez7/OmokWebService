@@ -1,4 +1,5 @@
 <?php
+include "Board.php";
 class Game {
     private $gameState;
 
@@ -22,6 +23,12 @@ class Game {
         } else {
             $compMove = null; // No computer move if the player has won or it's a draw
         }
+
+//        $array =['response' => true,
+//            'ack_move' => $ackMove,
+//            'move' => $compMove];
+//        $tofile=json_encode($array);
+//        file_put_contents('tojson', $tofile);
 
         // Build and return the response
         return [
@@ -65,6 +72,7 @@ class Game {
             'row' => $isWin ? $row : []
         ];
     }
+
 }
 
 // this thing we would get from somewhere, where you ask ? I dont know
@@ -72,7 +80,9 @@ $playerMove = ['x' => 1, 'y' => 1];
 
 // Instantiate the Board class and process the player's move
 $board = new Board();
-$response = $board->validPlace($playerMove);
+$game = new Game();
+$response = $game->processMove($playerMove);
+
 
 // Output the response as JSON
 echo json_encode($response);

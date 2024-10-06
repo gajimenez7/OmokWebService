@@ -12,7 +12,8 @@ class GroupingPlayer{
   //
   // this should be implemented with a priority queue
   //  - the higher the grouping size, the higher the priority
-
+  //
+  // add type of diagonality, horizonality, verticality, etc.
   private int $groupSize;
   private $grouping;
 

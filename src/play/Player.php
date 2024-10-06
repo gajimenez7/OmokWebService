@@ -104,6 +104,21 @@ $testPlayer->insert($testGrouping2->getGrouping(), $testGrouping2->getGroupSize(
 // this contains 2 coords for some reason??? idk why
 // !!!!!!!!!!!!!!!!!!!!!!!
 //
+//
+//
+echo "Group 1: ";
+print_r($group1);
+echo "\n";
+
+echo "Group 2: ";
+print_r($group2);
+echo "\n";
+
+echo "Group 3: ";
+print_r($group3);
+echo "\n";
+
+$testPlayer->setExtractFlags(3);
 $topNode = $testPlayer->top();
 
 print_r($topNode);
@@ -121,12 +136,14 @@ $priorityTop = end($topNode);
 
 //echo "Value: " . $topNode[0] . " and Priority: " . end($topNode) . "\n";
 
+$testPlayer->setExtractFlags(1);
+
 while(!$testPlayer->isEmpty()){
   $whatIsInHere = $testPlayer->extract();
 
   // get group priority which is groupsize
-  echo "Group Size/Priority: " . $testGrouping2->getGroupSize() . "\n";
+  // echo "Group Size/Priority: " . $testGrouping2->getGroupSize() . "\n";
 
-  echo "Coords: (" . $testPlayer->getCoordX($whatIsInHere) . ", " . $testPlayer->getCoordY($whatIsInHere) . ")";
-  echo "\n";
+  // echo "Coords: (" . $testPlayer->getCoordX($whatIsInHere) . ", " . $testPlayer->getCoordY($whatIsInHere) . ")";
+  // echo "\n";
 }

@@ -1,7 +1,7 @@
 <?php
 
-include "Board.php";
-include "MoveStrategy.php";
+include "Player.php";
+include "GroupingPlayer.php";
 
 $compStart = True;
 
@@ -52,5 +52,12 @@ class SmartStrategy extends MoveStrategy{
 
 $board = new Board();
 $s = new SmartStrategy($board);
+
+$testPlayer = new Player;
+// make groups like this to test
+// insert 3 groups
+$coordinates1 = [rand(0,15), rand(0,15)];
+$testPlayer->insert($coordinates);
+print_r($testPlayer->extract());
 
 $s->pickPlace();

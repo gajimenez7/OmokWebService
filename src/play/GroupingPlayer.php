@@ -14,12 +14,23 @@ class GroupingPlayer{
   //  - the higher the grouping size, the higher the priority
   //
   // add type of diagonality, horizonality, verticality, etc.
+
   private int $groupSize;
   private $grouping;
+  private  string $orientation;
 
   function __construct(){
     $this->groupSize = 0;
     $this->grouping = [];
+    $this->orientation = "null";
+  }
+
+  function checkOrientation($group){
+    // set orientation inside of grouping object
+  }
+
+  function getOrientation($group){
+    return $this->orientation;
   }
 
   function addGroup($group){

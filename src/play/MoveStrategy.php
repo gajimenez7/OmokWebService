@@ -22,4 +22,5 @@ abstract class MoveStrategy
         $strategy = new static();
         return $strategy;
     }
+
 }

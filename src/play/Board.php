@@ -31,3 +31,4 @@ class Board
     return $availableSpace;
   }
 }
+

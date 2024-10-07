@@ -3,12 +3,7 @@ include "Board.php";
 class Game {
     private $gameState;
 
-    public function __construct() {
-        // Initialize the board
-        $this->gameState = [
-            'board' => [],
-        ];
-    }
+
     // Function to process a player's move and return the result
     public function processMove($playerMove): array
     {
@@ -39,7 +34,8 @@ class Game {
     }
 
     // Simulate or calculate the computer's move
-    private function generateComputerMove() {
+    private function generateComputerMove(): array
+    {
         // we need actual logic hehehehe
         return [
             'x' => 2,
@@ -85,7 +81,7 @@ $response = $game->processMove($playerMove);
 
 
 // Output the response as JSON
-echo json_encode($response);
+//echo json_encode($response);
 
 // some of these things I got from the professor
 // I would say that this is a very rough implementation of encoding so I dont know how it would actually work

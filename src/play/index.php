@@ -9,7 +9,6 @@ define('PID', 'pid');
 define('X_COORD', 'x');
 define('Y_COORD', 'y');
 $pid = uniqid();
-
 // Check for player id
 if(!$_GET[PID] || ($_GET[X_COORD]) || ($_GET[Y_COORD])){
     $result = array("response" => false, "reason" => "Incomplete parameters");
@@ -19,11 +18,30 @@ else {
     $pid = $_GET[PID];   // player id
     $x = $_GET[X_COORD]; //x cordinate
     $y = $_GET[Y_COORD]; //y cordinate
-    $to_enconde = [];
 
     // Read game data
-    $file = file_get_contents("here goes file where we are getting things, dont know exactly");
-    $read_File = json_encode();
+    $file = file_get_contents("new/tojson.txt");
+    $read_File = json_decode($file);
+
+    if (!$read_File->{$pid} == $_REQUEST[PID]) {
+        $response = array("response" => false, "reason" => "Unknown pid");
+        echo json_encode($response);
+    } else if ($x <= BOARD_SIZE  ) {
+        $response = array("response" => false, "reason" => "Invalid x coordinate, $x");
+        echo json_encode($response);
+
+    }
+    else if($y <= BOARD_SIZE){
+        $response = array("response" => false, "reason" => "Invalid y coordinate, $y");
+        echo json_encode($response);
+    }
+    else {
+        $game = new Game();
+        $player =[X_COORD, Y_COORD];
+        echo json_encode($game ->processMove($player));
+    }
+
+
 }
 
     // Validate player id

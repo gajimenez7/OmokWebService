@@ -31,11 +31,11 @@ function sendResponse($response,$reason_Id,$out) {
 
 //    echo json_encode($response);
 //}
-if(!array_key_exists(STRATEGY,$_REQUEST)) {
+if(array_key_exists(STRATEGY,$_REQUEST)) {
     sendResponse("false","reason","Strategy not specified");
 }
 else  {
-    $strategy = $_REQUEST[STRATEGY];
+    $strategy = "random";
     if($strategy == "random") {
         $pid = uniqid();
         sendResponse("true","pid",$pid);

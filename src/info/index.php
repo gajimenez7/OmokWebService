@@ -1,9 +1,9 @@
 <?php //index.php
 
-define('SIZE', 15); 
+const SIZE = 15;
 
-const STRATEGIES = array('Smart' => 'SmartStrategy', 'Random' => 'RandomStrategy');
+const STRATEGIES = array('Smart' => 'SmartStrategy','Random'=> 'Random' );
 
-$info = array('size' => SIZE, 'strategies' => STRATEGIES);
+$info = array('size' => SIZE, 'strategies' => array_keys (STRATEGIES));
 
 echo json_encode($info);

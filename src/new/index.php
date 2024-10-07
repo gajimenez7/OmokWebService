@@ -1,48 +1,70 @@
 <?php
 // Function to return error messages as JSON
-function sendError($reason) {
+const STRATEGY = "strategy";
+$file_Name = "tojson.txt";
+
+//$url = 'https://www.cs.utep.edu/cheon/cs3360/project/omok/new/';
+//$strategy = 'Smart';
+//$response = @file_get_contents("$url?strategy=$strategy");
+//if ($response) {
+//    echo $response;
+//} else {
+//    echo "Failed to get response.";
+//}
+
+function sendResponse($response,$reason_Id,$out) {
     $response = array(
-        "response" => false,
-        "reason" => $reason
+        "response" => $response,
+        $reason_Id=>$out,
+
     );
 
     echo json_encode($response);
 }
 
-// Example usage
-if ($_POST['pid']) {
-    sendError("Pid not specified");
+//function sendError($reason,$response) {
+//    $response = array(
+//        "response" => $response,
+//        "pid"=>$pid,
+//        "reason" => $reason
+//    );
+
+//    echo json_encode($response);
+//}
+if(!array_key_exists(STRATEGY,$_REQUEST)) {
+    sendResponse("false","reason","Strategy not specified");
 }
+else  {
+    $strategy = $_REQUEST[STRATEGY];
+    if($strategy == "random") {
+        $pid = uniqid();
+        sendResponse("true","pid",$pid);
+        $file = fopen("$file_Name", "w");
+        fputs($file, json_encode(array('pid' => $pid, 'strategy' => $strategy, 'player' => [], 'Bot' => [])));
+        fclose($file);
+    }
+    else if($strategy == "smart") {
+        $pid = uniqid();
+        sendResponse("true","pid",$pid);
+        $file = fopen("$file_Name", "w");
+        fputs($file, json_encode(array('pid' => $pid, 'strategy' => $strategy, 'player' => [], 'Bot' => [])));
+        fclose($file);
+    }
+    else {
+        sendResponse("false","reason","Unknown Strategy");
+    }
 
-$pid = $_POST['pid'];
-
-
-// Checking for x and y coordinates
-if ($_POST['x']) {
-    sendError("x not specified");
 }
+//else if($_REQUEST[STRATEGY] == "strategy") {
+//    sendError(1,1,0);
+//
+//}
 
-if ($_POST['y']) {
-    sendError("y not specified");
-}
 
-$x = $_POST['x'];
-$y = $_POST['y'];
-// add logic
-if ($x ) {
-    sendError("Invalid x coordinate, " . $x);
-}
 
-if ($y) {
-    sendError("Invalid y coordinate, " . $y);
-}
 
-$response = array(
-    "response" => true,
-    "message" => "Success!"
-);
 
 // Output the JSON response
 
-echo json_encode($response);
+
 

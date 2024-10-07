@@ -52,9 +52,6 @@ class SmartStrategy extends MoveStrategy{
           $this->insert($coordinates1[0]-1,$coordinates1[1]-1,"BDiagonal");
       }
 
-
-
-
     // place must be picked based off of two criteria:
     // - there is a valid place
     // - the player has 3 stones in a row (-,|,\,/) (PRIORITY)

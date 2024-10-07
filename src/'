@@ -188,9 +188,6 @@ $grouping1->addGroup($group1);
 $grouping1->addGroup($group2);
 $player1->insert($grouping1->getGrouping(),$grouping1->getGroupSize());
 
-// commenting this out allows the second if to work
-// idk why
-
 if($player1->inGrouping($group3, $grouping1, $player1)){
   echo "in grouping 1 \n";
 }
@@ -198,7 +195,6 @@ else{
   echo "not in grouping 1 \n";
 }
 
-// if u go to line 124 it doesn't enter the if or the else or anything >:((((
 if($player1->inGrouping($group4, $grouping1, $player1)){
   echo "group 4 in grouping 1 \n";
 }

@@ -57,9 +57,7 @@ class Player extends SplPriorityQueue{
       $arrOrientations = ["vertical", "horizontal", "forw_diagonal", "back_diagonal"];
       // need to check orientation if there is one associated
       $orient = $grouping->getOrientation();
-      
-      echo $orient . "\n";
-      echo $arrOrientations[2] . "\n";
+
       $arr = $myQueue->extract();
       // check first and last coordinates
       $firstX = $arr[0][0];
@@ -114,7 +112,30 @@ class Player extends SplPriorityQueue{
         $isInGrouping = true;
         $whichEnd = self::EROW;
       }
-      
+      // if it is in grouping just insert into grouping given in parameter
+      if($isInGrouping == 1){
+        $grouping->addGroup($group);
+      }
+      else{
+        echo "in else not grouping \n";
+        // else create a new grouping object and add it
+        for ($i=0; $i < sizeOf($arr); $i++) {
+          if((($currX == $arr[$i][0]) && ($currY == $arr[$i][1]+1)) ||
+            (($currX == $arr[$i][0]) && ($currY == $arr[$i][1]-1))){
+            $newGrouping = new GroupingPlayer;
+            $newGrouping->addGroup($group);
+            self::insert($newGrouping);
+          }
+          else if((($currX == $arr[$i][0]-1) && ($currY == $arr[$i][1])) ||
+            (($currX == $arr[$i][0]+1) && ($currY == $arr[$i][1]))){
+            $newGrouping = new GroupingPlayer;
+            $newGrouping->addGroup($group);
+            self::insert($newGrouping);
+          }
+        }
+        echo "created new group \n";
+      }
+
       /*
       // possibly change this to fori,
       // since this might be used to check middle values
@@ -147,7 +168,6 @@ class Player extends SplPriorityQueue{
       }
        */
     }
-
     return $isInGrouping;
   }
   // create a method which receives groupingplayer/ parses,
@@ -186,20 +206,30 @@ $group1 = [1,1];
 $group2 = [2,2];
 $group3 = [3,3];
 
+$group4 = [1,2];
+
 $grouping1 = new GroupingPlayer;
 $player1 = new Player;
 
 $grouping1->addGroup($group1);
 $grouping1->addGroup($group2);
-
 $player1->insert($grouping1->getGrouping(),$grouping1->getGroupSize());
 
 if($player1->inGrouping($group3, $grouping1, $player1)){
-  $grouping1->addGroup($group3);
+  echo "in grouping 1 \n";
 }
 else{
-
+  echo "not in grouping 1 \n";
 }
+
+if($player1->inGrouping($group4, $grouping1, $player1)){
+  echo "group 4 in grouping 1 \n";
+}
+else{
+  echo "group 4 not in grouping 1 \n";
+}
+
+print_r($player1);
 
 /*
 // one grouping

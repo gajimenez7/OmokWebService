@@ -74,11 +74,12 @@ class GroupingPlayer{
   function getOrientation($group){
     return $this->orientation;
   }
-  
+
   function isGrouping(){
     // check if input belongs to an existing grouping
     // or add to a new grouping
   }
+
   function addGroup($group){
     $this->groupSize++;
     $this->grouping[]= $group;

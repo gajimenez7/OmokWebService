@@ -13,6 +13,8 @@ include "GroupingPlayer.php";
 // groups are inside GroupingPlayer object, which holds all groups
 
 class Player extends SplPriorityQueue{
+   const BROW = "beg";
+   const EROW = "end";
 
   // parse queue/heap and check for addition of groupings
   // return a boolean if it is in grouping
@@ -22,9 +24,9 @@ class Player extends SplPriorityQueue{
   //
   // if the group is in a grouping with the middle places
   // create a new grouping with 
-  function inGrouping($group, $thisQueue){
+  function inGrouping($group, $grouping, $thisQueue){
     $isInGrouping = false;
-    $isInGroupingY = false;
+    $whichEnd = "null";
     
     // create new copy of the current queue
     $myQueue = new \SplPriorityQueue();
@@ -32,12 +34,12 @@ class Player extends SplPriorityQueue{
     $myQueue = $thisQueue;
 
     $myQueue->setExtractFlags(1);
-    
+
     // get coordinate values from group we want
     // to insert
     $currX = $group[0];
     $currY = end($group);
-    
+
     echo "x: " . $currX. " y: " . $currY . "\n";
 
     // while the queue isn't empty, get values of first node
@@ -49,35 +51,104 @@ class Player extends SplPriorityQueue{
     // and insert group into new grouping
     //
     // TODO: need to check if there can be a new group created
-    while(!$myQueue->isEmpty()){
-      $arr = $myQueue->extract();
 
+    while(!$myQueue->isEmpty()){
+
+      $arrOrientations = ["vertical", "horizontal", "forw_diagonal", "back_diagonal"];
+      // need to check orientation if there is one associated
+      $orient = $grouping->getOrientation();
+      
+      echo $orient . "\n";
+      echo $arrOrientations[2] . "\n";
+      $arr = $myQueue->extract();
+      // check first and last coordinates
+      $firstX = $arr[0][0];
+      $firstY = $arr[0][1];
+
+      $lastX = end($arr)[0];
+      $lastY = end($arr)[1];
+
+      // compare with first coords: x
+      echo "comparing first coords: " . $firstX . ", " . $firstY . "\n";
+      // first coordinate, can only check backwards
+
+      if(($orient == $arrOrientations[0]) && ($currX == $firstX && $currY == $firstY-1)){
+        echo "f1 \n";
+        $isInGrouping = true;
+        $whichEnd = self::BROW;
+      }
+      else if(($orient == $arrOrientations[1]) && ($currX == $firstX-1 && $currY == $firstY)){
+        echo "f2 \n";
+        $isInGrouping = true;
+        $whichEnd = self::BROW;
+      }
+      else if (($orient == $arrOrientations[2]) && ($currX == $firstX-1 && $currY == $firstY-1)){
+        echo "f3 \n";
+        $isInGrouping = true;
+        $whichEnd = self::BROW;
+      }
+      else if (($orient == $arrOrientations[3]) && ($currX == $firstX-1 && $currY == $firstY+1)){
+        echo "f4 \n";
+        $isInGrouping = true;
+        $whichEnd = self::BROW;
+      }
+      // compare with last coords: x
+      echo "comparing last coords: " . $lastX . ", " . $lastY . "\n";
+      if(($orient == $arrOrientations[0]) && ($currX == $lastX && $currY == $lastY+1)){
+        $isInGrouping = true;
+        echo "l1 \n";
+        $whichEnd = self::EROW;
+      }
+      else if(($orient == $arrOrientations[1]) && ($currX == $lastX+1 && $currY == $lastY)){
+        echo "l2 \n";
+        $isInGrouping = true;
+        $whichEnd = self::EROW;
+      }
+      else if (($orient == $arrOrientations[2]) && ($currX == $lastX+1 && $currY == $lastY+1)){
+        echo "l3 \n";
+        $isInGrouping = true;
+        $whichEnd = self::EROW;
+      }
+      else if (($orient == $arrOrientations[3]) && ($currX == $lastX-1 && $currY == $lastY-1)){
+        echo "l4 \n";
+        $isInGrouping = true;
+        $whichEnd = self::EROW;
+      }
+      
+      /*
+      // possibly change this to fori,
+      // since this might be used to check middle values
+      //
+      // maybe also make a check if size is 3 or more
       foreach($arr as $val){
         // check x coordinates
         switch($currX){
           case $val[0]+1:
-            $isInGrouping = true;
+            $isInGroupingX = true;
             echo "case 1 x: " . $val[0]+1 . "\n";
             break;
           case $val[0]-1:
-            $isInGrouping = true;
+            $isInGroupingX = true;
             echo "case 2 x: " . $val[0]-1 ." \n";
             break;
-          }
+        }
 
         // check y coordinates
         switch ($currY) {
           case end($val)+1:
-            $isInGrouping = true;
+            $isInGroupingY = true;
             echo "case 1 y: " . end($val)+1 . "\n";
             break;
           case end($val)-1:
-            $isInGrouping = true;
+            $isInGroupingY = true;
             echo "case 2 y: " . end($val)-1 . " \n";
             break;
         }
       }
+       */
     }
+
+    return $isInGrouping;
   }
   // create a method which receives groupingplayer/ parses,
   // and returns coordinates
@@ -111,6 +182,26 @@ class Player extends SplPriorityQueue{
 #################################################################
 # TEST CODE
 
+$group1 = [1,1];
+$group2 = [2,2];
+$group3 = [3,3];
+
+$grouping1 = new GroupingPlayer;
+$player1 = new Player;
+
+$grouping1->addGroup($group1);
+$grouping1->addGroup($group2);
+
+$player1->insert($grouping1->getGrouping(),$grouping1->getGroupSize());
+
+if($player1->inGrouping($group3, $grouping1, $player1)){
+  $grouping1->addGroup($group3);
+}
+else{
+
+}
+
+/*
 // one grouping
 // one group
 
@@ -214,9 +305,7 @@ while(!$testPlayer->isEmpty()){
   // echo "Coords: (" . $testPlayer->getCoordX($whatIsInHere) . ", " . $testPlayer->getCoordY($whatIsInHere) . ")";
   // echo "\n";
 }
- */
 
 $group4 = [2, 2];
 $testPlayer->inGrouping($group4, $testPlayer);
-
-
+ */

@@ -32,7 +32,7 @@ class GroupingPlayer{
 
   function checkOrientation(){
     // set orientation inside of grouping object
-    if($this->groupSize >= 3){
+    if($this->groupSize >= 2){
       $size = $this->groupSize;
 
       $x1 = $this->grouping[0][0];
@@ -41,8 +41,8 @@ class GroupingPlayer{
       $xn = end($this->grouping)[0];
       $yn = end($this->grouping)[1];
 
-      echo "x 1: " . $x1 . " and y 1: " . $y1 ."\n";
-      echo "x n: " . $xn . " and y n: " . $yn ."\n";
+      // echo "x 1: " . $x1 . " and y 1: " . $y1 ."\n";
+      // echo "x n: " . $xn . " and y n: " . $yn ."\n";
 
       // calculate slope to evaluate orientation
 
@@ -67,11 +67,11 @@ class GroupingPlayer{
           break;
         }
       }
-      echo "orientation is " . $this->orientation . "\n";
+      // echo "orientation is " . $this->orientation . "\n";
     }
   }
 
-  function getOrientation($group){
+  function getOrientation(){
     return $this->orientation;
   }
 
@@ -130,7 +130,7 @@ echo "GROUP 2 ADDED \n";
 echo "\n";
 
 $test->printGrouping();
- */
+
 $group1 = [1, 1];
 $group2 = [2, 2]; 
 $group3 = [3, 3];
@@ -139,5 +139,7 @@ $test = new GroupingPlayer;
 
 $test->addGroup($group1);
 $test->addGroup($group2);
-$test->addGroup($group3);
+//$test->addGroup($group3);
 
+print_r($test);
+ */

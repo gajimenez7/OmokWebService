@@ -11,7 +11,6 @@ class SmartStrategy extends MoveStrategy
   {
     global $compStart;
 
-
     if ($compStart) {
         $compStart = false;
 
@@ -34,35 +33,20 @@ class SmartStrategy extends MoveStrategy
     // else, we add stone to:
     //  - rather new open area
     //  - or new open area next to an existing stone
-
-  }// aqui we
+  }
+  // aqui we
   // place holder
+  //
+  // insert computer placement into board
   public function insert($x, $y, $orientation): int
   {
+    // get coordinates from computer to place into board
+    // "traverse" too cordinates on board and set
     return 0;
   }
 
+  // check if placement is valid
   public function isEmpty($x, $y): bool
-  {
-    return true;
-  }
-
-  // check if there are 3 in a row
-  public function horizontal(): bool
-  {
-    return true;
-  }
-
-
-  public function vertical(): bool
-  {
-    return false;
-  }
-  public function diagonalRight(): bool
-  {
-    return true;
-  }
-  public function diagonalLeft(): bool
   {
     return true;
   }

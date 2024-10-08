@@ -2,6 +2,10 @@
 
 class Board
 {
+  // empty spot = 0
+  // player spot = 1
+  // computer spot = 2
+  //
   // define size of the board as constant
   const SIZE = 15;
 

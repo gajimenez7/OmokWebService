@@ -1,5 +1,6 @@
 <?php
 
+
 include 'Game.php';
 
 // constants
@@ -10,8 +11,12 @@ define('X_COORD', 'x');
 define('Y_COORD', 'y');
 $pid = uniqid();
 // Check for player id
-if(!$_GET[PID] || ($_GET[X_COORD]) || ($_GET[Y_COORD])){
+if(!isset($_GET[PID]) || !isset($_GET[X_COORD]) || !isset($_GET[Y_COORD])){
     $result = array("response" => false, "reason" => "Incomplete parameters");
+    $file = fopen("../new/tojson.txt", "w");
+    fputs($file, json_encode($result));
+    fclose($file);
+    echo json_encode($result);
     echo json_encode($result);
 }
 else {

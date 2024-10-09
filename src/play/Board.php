@@ -64,6 +64,10 @@ class Board
 
     return $availableSpace;
   }
+
+  function getBoard(){
+    return $this->board;
+  }
 //  function updateBoard()
 //  {
 //      $file = file_get_contents("../new/tojson.txt");

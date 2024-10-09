@@ -50,14 +50,26 @@ else {
         $board=new Board();
         $board->updateBoard();
         $game = new Game();
-        $player =[$x, $y];
+        $Movement =[$x, $y];
         $board2= $board ->getBoard();
+        $player=new Player;
         if($board2[$x][$y] !=0){
             $response = array("response" => false, "reason" => "Move not well-formed");
         }
         else {
             $groupPlayer= new GroupingPlayer();
-            $groupPlayer ->addGroup($player);
+            $groupPlayer ->addGroup($Movement);
+            //array bro
+            //group player
+            //player
+            $array=$read_File;
+//            json_encode($file);
+            foreach ($player as $move) {
+                $x = $move[0];  // X coordinate
+                $y = $move[1];
+                $player->inGrouping($move,$groupPlayer,$player);;  // Place player marker (1)
+            }
+
         }
         //echo json_encode($game ->processMove($player));
     }

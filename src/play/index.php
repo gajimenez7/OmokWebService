@@ -2,9 +2,9 @@
 
 
 include 'Game.php';
-include 'GroupingPlayer.php';
+//include 'GroupingPlayer.php';
 include 'Player.php';
-include 'Board.php';
+//include 'Board.php';
 
 
 // constants
@@ -15,13 +15,15 @@ define('X_COORD', 'x');
 define('Y_COORD', 'y');
 $pid = uniqid();
 // Check for player id
-if(!isset($_GET[PID]) || !isset($_GET[X_COORD]) || !isset($_GET[Y_COORD])){
-    $result = array("response" => false, "reason" => "Incomplete parameters");
-    $file = fopen("../new/tojson.txt", "w");
-    fputs($file, json_encode($result));
-    fclose($file);
+if( !isset($_GET[X_COORD]) || !isset($_GET[Y_COORD])){
+    $result = array("response" => false, "reason" => "Move not specified");
+//    $file = fopen("../new/tojson.txt", "w");
+//    fputs($file, json_encode($result));
+//    fclose($file);
     echo json_encode($result);
-    echo json_encode($result);
+}
+else if (isset($_REQUEST[PID])){
+    $result = array("response" => false, "reason" => "Pid not specified");
 }
 else {
     $pid = $_GET[PID];   // player id
@@ -45,11 +47,19 @@ else {
         echo json_encode($response);
     }
     else {
-        $board=new board();
+        $board=new Board();
+        $board->updateBoard();
         $game = new Game();
-        $player =[X_COORD, Y_COORD];
-        if($board->validPlace())
-        echo json_encode($game ->processMove($player));
+        $player =[$x, $y];
+        $board2= $board ->getBoard();
+        if($board2[$x][$y] !=0){
+            $response = array("response" => false, "reason" => "Move not well-formed");
+        }
+        else {
+            $groupPlayer= new GroupingPlayer();
+            $groupPlayer ->addGroup($player);
+        }
+        //echo json_encode($game ->processMove($player));
     }
 
 

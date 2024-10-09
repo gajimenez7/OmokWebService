@@ -1,5 +1,5 @@
 <?php
-include "Board.php";
+//include "Board.php";
 class Game {
 
 
@@ -52,6 +52,7 @@ class Game {
         $array = [$x, $y];
 
         // Return the result of the move
+        $row = [];
         return [
             'x' => $x,
             'y' => $y,
@@ -67,13 +68,13 @@ class Game {
 $playerMove = ['x' => 1, 'y' => 1];
 
 // Instantiate the Board class and process the player's move
-$board = new Board();
-$game = new Game();
-$response = $game->processMove($playerMove);
+//$board = new Board();
+//$game = new Game();
+//$response = $game->processMove($playerMove);
 
 
 // Output the response as JSON
-echo json_encode($response);
+//echo json_encode($response);
 
 // some of these things I got from the professor
 // I would say that this is a very rough implementation of encoding so I dont know how it would actually work

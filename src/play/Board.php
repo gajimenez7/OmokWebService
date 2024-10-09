@@ -30,15 +30,15 @@ class Board
           $y = $move[1];  // Y coordinate
           $this->board[$x][$y] = 2;  // Place bot marker (2)
       }
-      echo "\nBoard State:\n";
-      for ($i = 0; $i < self::SIZE; $i++) {
-          for ($j = 0; $j < self::SIZE; $j++) {
-              // Print each cell followed by a space for readability
-              echo $this->board[$i][$j] . " ";
-          }
-          // Newline at the end of each row
-          echo "\n";
-      }
+//      echo "\nBoard State:\n";
+//      for ($i = 0; $i < self::SIZE; $i++) {
+//          for ($j = 0; $j < self::SIZE; $j++) {
+//              // Print each cell followed by a space for readability
+//              echo $this->board[$i][$j] . " ";
+//          }
+//          // Newline at the end of each row
+//          echo "\n";
+//      }
 
   }
 
@@ -81,7 +81,7 @@ class Board
 //  }
 
 }
-$board = new Board();
+//$board = new Board();
 //print_r($board);
 //print_r($bamtan);
 

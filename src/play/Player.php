@@ -31,7 +31,7 @@ class Player extends SplPriorityQueue
   {
     $isInGrouping = false;
     $whichEnd = "null";
-    $newGrouping = new GroupingPlayer();
+    
 
     // create new copy of the current queue
     // $myQueue = new Player();
@@ -123,23 +123,29 @@ class Player extends SplPriorityQueue
       } elseif ($isInGrouping != 1) {
         echo "in else not grouping \n";
         // else create a new grouping object and add it
+        //
+        // double check to make sure that new grouping is being made each time
         for ($i = 0; $i < sizeOf($arr); $i++) {
           if (($currX == $arr[$i][0]) && ($currY == $arr[$i][1] + 1)) {
+            $newGrouping = new GroupingPlayer();
             $newGrouping->addGroup($group);
             $newGrouping->addGroup([$arr[$i][0], $arr[$i][1]]);
             echo "----in second if condition \n";
             self::insert($newGrouping->getGrouping(), $newGrouping->getGroupSize());
           } else if (($currX == $arr[$i][0]) && ($currY == $arr[$i][1] - 1)) {
+            $newGrouping = new GroupingPlayer();
             $newGrouping->addGroup($group);
             $newGrouping->addGroup([$arr[$i][0], $arr[$i][1]]);
             echo "----in second if condition \n";
             self::insert($newGrouping->getGrouping(), $newGrouping->getGroupSize());
           } elseif (($currX == $arr[$i][0] - 1) && ($currY == $arr[$i][1])) {
+            $newGrouping = new GroupingPlayer();
             $newGrouping->addGroup($group);
             $newGrouping->addGroup([$arr[$i][0], $arr[$i][1]]);
             echo "----in second else if condition \n";
             self::insert($newGrouping->getGrouping(), $newGrouping->getGroupSize());
           } else if (($currX == $arr[$i][0] + 1) && ($currY == $arr[$i][1])) {
+            $newGrouping = new GroupingPlayer();
             $newGrouping->addGroup($group);
             $newGrouping->addGroup([$arr[$i][0], $arr[$i][1]]);
             echo "----in second if condition \n";
@@ -148,7 +154,7 @@ class Player extends SplPriorityQueue
           echo "created new group \n";
         }
       }
-      return [$isInGrouping, clone $newGrouping];
+      return [$isInGrouping];
     }
   }
 
@@ -202,23 +208,23 @@ $player1->insert($grouping1->getGrouping(), $grouping1->getGroupSize());
 
 $inVariable1 = $player1->inGrouping($group3, $grouping1, $player1);
 
-if ($inVariable1[0]) {
+if ($inVariable1) {
   echo "in grouping 1 \n";
 } else {
   echo "not in grouping 1 \n";
 }
 
-print_r($inVariable1[1]);
+print_r($player1);
 
 $inVariable2 = $player1->inGrouping($group4, $grouping1, $player1);
 
-if ($inVariable2[0]) {
+if ($inVariable2) {
   echo "group 4 in grouping 1 \n";
 } else {
   echo "group 4 not in grouping 1 \n";
 }
 
-print_r($inVariable2[1]);
+print_r($player1);
 
 /*
 // one grouping

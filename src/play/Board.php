@@ -38,5 +38,9 @@ class Board
 
     return $availableSpace;
   }
+
+  function getBoard(){
+    return $this->$board;
+  }
 }
 

@@ -40,7 +40,7 @@ class Board
   }
 
   function getBoard(){
-    return $this->$board;
+    return $this->board;
   }
 }
 

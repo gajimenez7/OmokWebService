@@ -2,6 +2,10 @@
 
 
 include 'Game.php';
+include 'GroupingPlayer.php';
+include 'Player.php';
+include 'Board.php';
+
 
 // constants
 define("BOARD_SIZE", 15);
@@ -36,13 +40,15 @@ else {
         echo json_encode($response);
 
     }
-    else if($y <= BOARD_SIZE){
+    else if($y < BOARD_SIZE){
         $response = array("response" => false, "reason" => "Invalid y coordinate, $y");
         echo json_encode($response);
     }
     else {
+        $board=new board();
         $game = new Game();
         $player =[X_COORD, Y_COORD];
+        if($board->validPlace())
         echo json_encode($game ->processMove($player));
     }
 

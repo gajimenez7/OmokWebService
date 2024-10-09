@@ -1,1 +1,1 @@
-{"response":false,"reason":"Incomplete parameters"}
+{"pid":"67056f2a29059","strategy":"random","player":[[0,0],[3,4]],"bot":[]}

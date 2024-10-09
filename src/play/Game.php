@@ -1,7 +1,6 @@
 <?php
 include "Board.php";
 class Game {
-    private $gameState;
 
 
     // Function to process a player's move and return the result
@@ -50,14 +49,7 @@ class Game {
         $isWin = false; // True if this move wins the game
         $isDraw = false; // True if this move leads to a draw
 
-        // Simulated logic bro I want to go to sleep
-        if (rand(0, 1)) {
-            $isWin = true;
-            $row = [6, 7, 7, 7, 8, 7, 9, 7, 10, 7];
-        } else if (rand(0, 1)) {
-            $isDraw = true;
-            $row = [];
-        }
+        $array = [$x, $y];
 
         // Return the result of the move
         return [
@@ -81,7 +73,7 @@ $response = $game->processMove($playerMove);
 
 
 // Output the response as JSON
-//echo json_encode($response);
+echo json_encode($response);
 
 // some of these things I got from the professor
 // I would say that this is a very rough implementation of encoding so I dont know how it would actually work

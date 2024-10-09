@@ -1,1 +1,1 @@
-{"pid":"67035775ab429","strategy":"random","player":[],"Bot":[]}
+{"pid":"67056f2a29059","strategy":"random","player":[[0,0],[3,4]],"bot":[]}

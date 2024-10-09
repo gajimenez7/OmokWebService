@@ -97,9 +97,9 @@ class GroupingPlayer{
     $arr = $this->grouping;
 
     foreach($arr as $val){
-      echo "Group size: " . $this->groupSize . "\n";
+     // echo "Group size: " . $this->groupSize . "\n";
 
-      echo "Coords: ";
+     // echo "Coords: ";
       foreach($val as $coords){
         echo $coords . " ";
       }

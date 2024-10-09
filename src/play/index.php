@@ -1,6 +1,11 @@
 <?php
 
+
 include 'Game.php';
+//include 'GroupingPlayer.php';
+include 'Player.php';
+//include 'Board.php';
+
 
 // constants
 define("BOARD_SIZE", 15);
@@ -10,9 +15,15 @@ define('X_COORD', 'x');
 define('Y_COORD', 'y');
 $pid = uniqid();
 // Check for player id
-if(!$_GET[PID] || ($_GET[X_COORD]) || ($_GET[Y_COORD])){
-    $result = array("response" => false, "reason" => "Incomplete parameters");
+if( !isset($_GET[X_COORD]) || !isset($_GET[Y_COORD])){
+    $result = array("response" => false, "reason" => "Move not specified");
+//    $file = fopen("../new/tojson.txt", "w");
+//    fputs($file, json_encode($result));
+//    fclose($file);
     echo json_encode($result);
+}
+else if (isset($_REQUEST[PID])){
+    $result = array("response" => false, "reason" => "Pid not specified");
 }
 else {
     $pid = $_GET[PID];   // player id
@@ -31,14 +42,36 @@ else {
         echo json_encode($response);
 
     }
-    else if($y <= BOARD_SIZE){
+    else if($y < BOARD_SIZE){
         $response = array("response" => false, "reason" => "Invalid y coordinate, $y");
         echo json_encode($response);
     }
     else {
+        $board=new Board();
+        $board->updateBoard();
         $game = new Game();
-        $player =[X_COORD, Y_COORD];
-        echo json_encode($game ->processMove($player));
+        $Movement =[$x, $y];
+        $board2= $board ->getBoard();
+        $player=new Player;
+        if($board2[$x][$y] !=0){
+            $response = array("response" => false, "reason" => "Move not well-formed");
+        }
+        else {
+            $groupPlayer= new GroupingPlayer();
+            $groupPlayer ->addGroup($Movement);
+            //array bro
+            //group player
+            //player
+            $array=$read_File;
+//            json_encode($file);
+            foreach ($player as $move) {
+                $x = $move[0];  // X coordinate
+                $y = $move[1];
+                $player->inGrouping($move,$groupPlayer,$player);;  // Place player marker (1)
+            }
+
+        }
+        //echo json_encode($game ->processMove($player));
     }
 
 

@@ -1,7 +1,6 @@
 <?php
-include "Board.php";
+//include "Board.php";
 class Game {
-    private $gameState;
 
 
     // Function to process a player's move and return the result
@@ -50,16 +49,10 @@ class Game {
         $isWin = false; // True if this move wins the game
         $isDraw = false; // True if this move leads to a draw
 
-        // Simulated logic bro I want to go to sleep
-        if (rand(0, 1)) {
-            $isWin = true;
-            $row = [6, 7, 7, 7, 8, 7, 9, 7, 10, 7];
-        } else if (rand(0, 1)) {
-            $isDraw = true;
-            $row = [];
-        }
+        $array = [$x, $y];
 
         // Return the result of the move
+        $row = [];
         return [
             'x' => $x,
             'y' => $y,
@@ -75,9 +68,9 @@ class Game {
 $playerMove = ['x' => 1, 'y' => 1];
 
 // Instantiate the Board class and process the player's move
-$board = new Board();
-$game = new Game();
-$response = $game->processMove($playerMove);
+//$board = new Board();
+//$game = new Game();
+//$response = $game->processMove($playerMove);
 
 
 // Output the response as JSON

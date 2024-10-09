@@ -16,6 +16,10 @@ class Board
     $this->board = array_fill(0, self::SIZE, array_fill(0,self::SIZE,0));
   }
 
+  function updateBoard(){
+
+  }
+
   function validPlace(){
     //declare valid array to return based on play board
     $validArr = $this->validateBoard($this->board);

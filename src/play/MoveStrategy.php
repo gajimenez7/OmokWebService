@@ -10,7 +10,7 @@ abstract class MoveStrategy
         $this->board = $board;
     }
 
-    abstract function pickPlace();
+    abstract function pickPlace($array);
 
     function toJson()
     {
